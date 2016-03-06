@@ -17,12 +17,16 @@ public:
 	
 	void Setnum(int x, int y, int num);
 
-	Sudoku();
+	explicit Sudoku();
 	
 	~Sudoku();
 
 
 	bool validationSudoku();
+
+	bool SolveSudoku();
+
+	void showall();
 private:
 	int a[9][9] = { 0 };
 	bool yz[10] = { false };
