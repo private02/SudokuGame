@@ -1,4 +1,4 @@
-//数独类 ： 2016年3月6日 ~  create by chenlei（3076954711）
+//数独类 ： 2016年3月6日  create by chenlei（3076954711）
 
 
 
@@ -27,23 +27,30 @@ public:
 	bool SolveSudoku();
 
 	void showall();
+
+
+	void Candidate(int m);
+
+	int canplace(int row, int col, int c);
 private:
 	int a[9][9] = { 0 };
+	int a2[9][9] = { 0 };
 	bool yz[10] = { false };
 
 	int location[9][4] =
 	{
-		{ 1,1,3,3 },
-		{ 1,4,3,6 },
-		{ 1,7,3,9 },
-		{ 4,1,6,3 },
-		{ 4,4,6,6 },
-		{ 4,7,6,9 },
-		{ 7,1,9,3 },
-		{ 7,4,9,6 },
-		{ 7,7,9,9 }
+		{ 0,0,2,2 },
+		{ 0,3,2,5 },
+		{ 0,6,2,8 },
+		{ 3,0,5,2 },
+		{ 3,3,5,5 },
+		{ 3,6,5,8 },
+		{ 6,0,8,2 },
+		{ 6,3,8,5 },
+		{ 6,6,8,8 }
 	};
-
+	
+	bool f = false;
 };
 
 
@@ -53,3 +60,5 @@ private:
 
 
 #endif
+
+
