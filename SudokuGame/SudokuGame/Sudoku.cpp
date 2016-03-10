@@ -1,6 +1,7 @@
-//数独类实现 ： 2016年3月6日 ~  create by chenlei（3076954711）
+//数独类实现 ： 2016年3月6日  create by chenlei（3076954711）
 #include "Sudoku.h"
 #include <iostream>
+#include <fstream>
 
 //#include <Windows.h>
 //#include <process.h>
@@ -13,7 +14,8 @@ Sudoku::Sudoku()
 
 Sudoku::~Sudoku()
 {
-
+	ofstream outry("d:\\a.txt");
+	outry << "sudoku desctoucr" << endl;
 }
 
 void Sudoku::emptyyz()
@@ -280,7 +282,7 @@ bool Sudoku::SolveSudoku()  /*这是用来解数独的*/
 
 
 	/*以下是候选数法*/
-	Candidate(0);
+	Candidate(0,0,0);
 	
 	f = false;
 	for (int i = 0;i < 9;i++)
@@ -307,6 +309,7 @@ bool Sudoku::SolveSudoku()  /*这是用来解数独的*/
 
 void Sudoku::showall()
 {
+	//ofstream out("d:/ans.txt");
 	for (int i = 0;i < 9;i++)
 	{
 		for (int j = 0;j < 9;j++)
@@ -315,84 +318,53 @@ void Sudoku::showall()
 		}
 		cout << "\n";
 	}
-}
-
-int Sudoku::canplace(int row, int col, int c)
-{
-	int i, j;
-	int flag = 1;
-
-	for (i = 0; i < 9; i++)
-	{
-		if (a[row][i] == c || a[i][col] == c)
-		{
-			flag = 0;
-			break;
-		}
-	}
-	if (flag != 0)
-	{
-		for (i = (row / 3) * 3; i < (row / 3) * 3 + 3; i++)
-		{
-			for (j = (col / 3) * 3; j < (col / 3) * 3 + 3; j++)
-			{
-				if (a[i][j] == c)
-				{
-					flag = 0;
-					break;
-				}
-			}
-			if (flag == 0)
-			{
-				break;
-			}
-		}
-	}
-	return flag;
-
-}
-
-
-
-void Sudoku::Candidate(int m)
-{
-	int i, j, row, col;
-	if (f)
-	{
-		return;
-	}
-	if (m >= 81)
-	{
-		for (int i = 0;i < 9;i++)
-		{
-			for (int j = 0;j < 9;j++)
-			{
-				
-				a2[i][j] = a[i][j];
-			}
-		}
-		
-		f = true;
-		
-	}
-	else
-	{
-		row = m / 9;
-		col = m % 9;
-		if (a[row][col] != 0)
-		{
-			Candidate(m + 1);
-		}
-		for (i = 1; i <= 9; i++)
-		{
-			if (canplace(row, col, i) == 1)
-			{
-				a[row][col] = i;
-				Candidate(m + 1);
-				a[row][col] = 0;
-			}
-		}
-
-	}
 	
 }
+
+
+bool Sudoku::canplace(int h, int l, int x)
+{
+	return true;
+}
+
+void Sudoku::clear()
+{
+	for (int i = 0;i < 9;i++)
+	{
+		for (int j = 0;j < 9;j++)
+		{
+			a[i][j] = 0;
+		}
+	}
+}
+
+int Sudoku::Seenum(int x, int y)
+{
+	return a[x][y];
+}
+
+bool Sudoku::compare(Sudoku & s)
+{
+	for (int i = 0;i < 9;i++)
+	{
+		for (int j = 0;j < 9;j++)
+		{
+			if (s.Seenum(i, j) == 0)
+			{
+				continue;
+			}
+			if (s.Seenum(i, j) != a[i][j])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+void Sudoku::Candidate(int m, int x, int y)
+{
+	
+}
+
+

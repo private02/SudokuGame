@@ -29,9 +29,15 @@ public:
 	void showall();
 
 
-	void Candidate(int m);
+	void Candidate(int m, int x, int y);
 
-	int canplace(int row, int col, int c);
+	bool canplace(int , int , int);
+
+	void clear();
+
+	int Seenum(int x, int y);
+
+	bool compare(Sudoku& s);
 private:
 	int a[9][9] = { 0 };
 	int a2[9][9] = { 0 };
